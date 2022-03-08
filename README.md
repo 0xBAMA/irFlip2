@@ -1,7 +1,7 @@
 # irFlip2
 Designed for channel swapping infrared images, now reimplemented as a more general utility, it takes an input argument to specify a swizzle for rearranging channels. Currently only operates on PNG compressed images, but at some point I'll add stb_image/stb_image_write to handle other formats.
 
-Swizzle syntax consists of 4 characters, from the set ```{ R, r, G, g, B, b, A, a }```, where uppercase is the input channel value, and lowercase is 255 minus the input channel value, e.g. value invert.
+Swizzle syntax consists of 4 characters, from the set ```{ R, r, G, g, B, b, A, a }```, where uppercase is the input channel value, and lowercase is 255 minus the input channel value, e.g. value invert. There are 4096 ( choosing 4 elements from a set of 8, with replacement = 8x8x8x8 = 4096 ) valid combinations.
 
 Example: 
 
