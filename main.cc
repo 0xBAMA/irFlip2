@@ -117,13 +117,11 @@ int main ( int argc, char const *argv[] ) {
 				std::cout << "image load failed" << std::endl;
 			}
 		} else {
-			std::cout << "bad swizzle" << std::endl;
+			std::cout << "bad swizzle - see README.md for details on usage" << std::endl;
 		}
 	} else {
-		std::cout << "bad input image filename" << std::endl;
+		std::cout << "input image is not png" << std::endl;
 	}
-
-
 
 	return 0;
 }
