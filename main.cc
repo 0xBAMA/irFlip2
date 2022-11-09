@@ -11,7 +11,9 @@ enum channel {
 	REDINVERT = 4,
 	GREENINVERT = 5,
 	BLUEINVERT = 6,
-	ALPHAINVERT = 7
+	ALPHAINVERT = 7,
+	SATURATEMIN = 8,
+	SATURATEMAX = 9
 };
 
 unsigned imageWidth, imageHeight;
@@ -48,6 +50,8 @@ bool TestSwizzle ( std::string specifiedSwizzle ) {
 				case 'b': writeSwizzle[ i ] = BLUEINVERT; break;
 				case 'A': writeSwizzle[ i ] = ALPHACHANNEL; break;
 				case 'a': writeSwizzle[ i ] = ALPHAINVERT; break;
+				case '0': writeSwizzle[ i ] = SATURATEMIN; break;
+				case '1': writeSwizzle[ i ] = SATURATEMAX; break;
 				default: return false; break;
 			}
 		}
@@ -77,6 +81,8 @@ void ChannelSwapAndWrite ( std::string filename ) {
 				case BLUEINVERT:  outputImageData[ i + c ] = 255 - inputImageData[ BLUE ]; break;
 				case ALPHACHANNEL: outputImageData[ i + c ] = inputImageData[ ALPHA ]; break;
 				case ALPHAINVERT:  outputImageData[ i + c ] = 255 - inputImageData[ ALPHA ]; break;
+				case SATURATEMIN:  outputImageData[ i + c ] = 0;
+				case SATURATEMAX:  outputImageData[ i + c ] = 255;
 			}
 		}
 	}
@@ -94,9 +100,10 @@ void ChannelSwapAndWrite ( std::string filename ) {
 int main ( int argc, char const *argv[] ) {
 	// call syntax is < filename > < desired swizzle >
 
-	// swizzle uses primitives R, r, G, g, B, b, A, a
+	// swizzle uses primitives R, r, G, g, B, b, A, a, 0, 1
 	// upper case is the channel value
 	// lower case is 255 - channel value ( e.g. value invert )
+	// special values 0, 1, for saturating to 0 and 255 respectively
 
 	// ex:
 	//	irFlip in1.png RRrA
