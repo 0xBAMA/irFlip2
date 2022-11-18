@@ -81,8 +81,8 @@ void ChannelSwapAndWrite ( std::string filename ) {
 				case BLUEINVERT:  outputImageData[ i + c ] = 255 - inputImageData[ BLUE ]; break;
 				case ALPHACHANNEL: outputImageData[ i + c ] = inputImageData[ ALPHA ]; break;
 				case ALPHAINVERT:  outputImageData[ i + c ] = 255 - inputImageData[ ALPHA ]; break;
-				case SATURATEMIN:  outputImageData[ i + c ] = 0;
-				case SATURATEMAX:  outputImageData[ i + c ] = 255;
+				case SATURATEMIN:  outputImageData[ i + c ] = 0; break;
+				case SATURATEMAX:  outputImageData[ i + c ] = 255; break;
 			}
 		}
 	}
